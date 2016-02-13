@@ -1,0 +1,65 @@
+<?php
+
+use Drupal\Core\Url;
+use Drupal\Core\Render\Markup;
+
+/**
+ * Implements hook_single_page_site_output_alter().
+ */
+function single_page_site_next_page_single_page_site_output_alter(&$output, $current_item) {
+  global $base_url;
+  // Get menu items.
+  $menu_items = _single_page_site_next_page_get_single_page_items();
+
+  $count_menu_items = count($menu_items);
+  // If item is not last item.
+  if ($current_item < $count_menu_items) {
+    $menu_item = $menu_items[$current_item];
+    // TODO: check if current menu item hasn't class "hide". Waiting on menu attributes to be ported.
+    $itemPluginDefinition = $menu_item->link->getPluginDefinition();
+    // Get params.
+    $params = $itemPluginDefinition['route_parameters'];
+    // Fetch href.
+    $href = Url::fromRoute($itemPluginDefinition['route_name'], $params)->toString();
+    // Generate valid anchor.
+    $anchor = _single_page_site_generate_anchor($href);
+    // Generate next url.
+    // (I know this is bad practice, but I haven't figured out yet how to render a link with only a fragment and no URL).
+    $next_page_link = '<a href="#' . $anchor . '" class="to-next-page">' . $itemPluginDefinition['title'] . '</a>';
+    // Attach link to output by creatng new markup object.
+    $output = Markup::create($output . $next_page_link);
+  }
+}
+
+/**
+ * Fetches single page items.
+ * @return type
+ */
+function _single_page_site_next_page_get_single_page_items() {
+  $items = &drupal_static(__FUNCTION__);
+  if (!isset($items)) {
+    $settings = \Drupal::config('single_page_site.config');
+
+    $items = array();
+    $menu_name = $settings->get('menu');
+    $tree = _single_page_site_get_menu_children($menu_name);
+
+    foreach ($tree as $object) {
+      $itemPluginDefinition = $object->link->getPluginDefinition();
+      // Check if menu item has to be rendered.
+      $render_menu_item = FALSE;
+      if ($itemPluginDefinition['route_name'] != '<front>') {
+        if (empty($settings->get('class'))) {
+          // If class is empty => all menu items.
+          $render_menu_item = TRUE;
+        }
+        // TODO: if menu attributes is ported, add check if current menu items has to be rendered.
+      }
+      
+      if ($render_menu_item) {
+        $items[] = $object;
+      }
+    }
+  }
+  return $items;
+}

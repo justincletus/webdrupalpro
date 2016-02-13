@@ -1,0 +1,6 @@
+registration_role_with_approval.admin:
+  title: 'Registration role with approval module settings'
+  description: 'Set up roles!'
+  parent: system.admin_config_people
+  route_name: registration_role_with_approval.roles
+  weight: 100

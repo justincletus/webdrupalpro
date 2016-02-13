@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<juiceboxpreset maxImageWidth="1024"
+	maxImageHeight="768"
+	imageQuality="80"
+	thumbWidth="120"
+	thumbHeight="120"
+	thumbQuality="90"
+	useFlickr="false"
+	resizeOnImport="true"
+	cropToFit="false"
+	maxThumbColumns="7"
+	captionPosition="NONE"
+	buttonBarPosition="TOP"
+	galleryTitlePosition="TOP"
+	galleryTitle="Gallery Title"
+	galleryWidth="100%"
+	showAutoPlayButton="true"
+	backgroundColor="rgba(18,18,18,1)"
+	showOpenButton="false"
+	imageTransitionType="FADE"
+	topBackColor="rgba(0,0,0,0.5)"/>

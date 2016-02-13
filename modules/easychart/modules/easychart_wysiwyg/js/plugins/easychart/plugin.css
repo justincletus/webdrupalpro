@@ -1,0 +1,55 @@
+.editor-chart-dialog {
+  background:#fff;
+  padding: 0;
+  border: 1px solid #fff;
+}
+
+.editor-chart-dialog .ui-dialog-titlebar {
+  margin:0;
+  padding:1em;
+  background-color:#333;
+  color:#fff;
+  position:relative;
+}
+
+.editor-chart-dialog .ui-dialog-titlebar-close {
+  position:absolute;
+  right:5px;
+  color:#fff;
+}
+
+#easyChartDialog {
+  margin:10px 0 0 0;
+}
+
+#easyChartDialog .easychart-view-modes-wrapper {
+  margin-bottom: 1em;
+}
+
+/* iFrame in popup */
+.view-easychart-charts ul {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+.view-easychart-charts ul li {
+  cursor: pointer;
+  padding: 0.5em;
+  list-style: none;
+  border: 1px solid #f3f3f3;
+  margin: 0.5em 0;
+}
+
+.view-easychart-charts ul li.active {
+  background: #d0f4c8;
+  border: 1px solid #3faf26;
+}
+
+.view-easychart-charts .views-field-nid {
+  display: none;
+}
+
+.view-easychart-charts div.views-admin-links ul.links li {
+  display: none;
+}

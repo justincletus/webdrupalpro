@@ -1,0 +1,9 @@
+easychart_wysiwyg.popup:
+  version: VERSION
+  js:
+    js/plugins/easychart/popup.js: {}
+  css:
+    theme:
+      js/plugins/easychart/plugin.css: {}
+  dependencies:
+    - core/drupal.ajax

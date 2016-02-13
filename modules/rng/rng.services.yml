@@ -1,0 +1,32 @@
+services:
+  rng.event_manager:
+    class: Drupal\rng\EventManager
+    arguments: ['@entity.manager']
+    parent: container.trait
+  rng.breadcrumb.registration:
+    class: Drupal\rng\Breadcrumb\RegistrationBreadcrumbBuilder
+    tags:
+      - { name: breadcrumb_builder, priority: 100 }
+  rng.breadcrumb.registration_group:
+    class: Drupal\rng\Breadcrumb\GroupBreadcrumbBuilder
+    tags:
+      - { name: breadcrumb_builder, priority: 100 }
+  rng.breadcrumb.rule_component:
+    class: Drupal\rng\Breadcrumb\RuleComponentBreadcrumbBuilder
+    tags:
+      - { name: breadcrumb_builder, priority: 100 }
+  rng.route_subscriber:
+    class: Drupal\rng\Routing\RouteSubscriber
+    arguments: ['@entity.manager', '@rng.event_manager']
+    tags:
+      - { name: event_subscriber }
+  access_check.rng.entity_is_event:
+    class: Drupal\rng\Access\EntityIsEventCheck
+    arguments: ['@rng.event_manager']
+    tags:
+      - { name: access_check, applies_to: _entity_is_event }
+  access_check.rng.event_registrations_allowed:
+    class: Drupal\rng\Access\RegistrationAddAccessCheck
+    arguments: ['@entity.manager']
+    tags:
+      - { name: access_check, applies_to: _registration_add_access }

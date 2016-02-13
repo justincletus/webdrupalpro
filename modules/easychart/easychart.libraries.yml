@@ -1,0 +1,74 @@
+easychart.widget:
+  version: VERSION
+  js:
+    js/easychart.widget.js: {}
+  css:
+    theme:
+      css/easychart.widget.css: {}
+  dependencies:
+    - core/jquery
+    - core/jquery.once
+    - core/drupal
+    - core/drupalSettings
+    - core/drupal.ajax
+
+easychart.render:
+  version: VERSION
+  js:
+    js/easychart.render.js: {}
+  dependencies:
+    - core/jquery
+    - core/jquery.once
+    - core/drupal
+    - core/drupalSettings
+    - core/drupal.ajax
+
+easychart.defaults:
+  version: VERSION
+  js:
+    js/easychart.defaults.js: {}
+  dependencies:
+    - core/jquery
+    - core/jquery.once
+    - core/drupal
+    - core/drupalSettings
+    - core/drupal.ajax
+
+lib.easycharts.minimal:
+  version: VERSION
+  js:
+    assets/easychart/dist/ec.minimal.min.js: {}
+
+lib.easycharts.simple:
+  version: VERSION
+  js:
+    assets/easychart/dist/ec.simple.min.js: {}
+
+# These version numbers and remote are used for drush integration.
+lib.highcharts:
+  version: "4.2.0"
+  remote: 'http://code.highcharts.com/zips/Highcharts-4.2.0.zip'
+  license:
+    name: Creative Commons Attribution - Non Commercial 3.0 License
+    gpl-compatible: false
+  js:
+    assets/highcharts/js/highcharts.js: {}
+    assets/highcharts/js/highcharts-3d.js: {}
+    assets/highcharts/js/highcharts-more.js: {}
+    assets/highcharts/js/modules/data.js: {}
+    assets/highcharts/js/modules/funnel.js: {}
+    assets/highcharts/js/modules/heatmap.js: {}
+    assets/highcharts/js/modules/no-data-to-display.js: {}
+    assets/highcharts/js/modules/solid-gauge.js: {}
+    assets/highcharts/js/modules/treemap.js: {}
+    assets/highcharts/js/modules/exporting.js: {}
+
+lib.easycharts.full:
+  version: '3.0.0'
+  remote: 'https://github.com/bestuurszaken/easychart/archive/3.x.zip'
+  license:
+    name: MIT
+    url: https://github.com/bestuurszaken/easychart/blob/master/LICENSE
+    gpl-compatible: true
+  js:
+    assets/easychart/dist/ec.full.min.js: {}

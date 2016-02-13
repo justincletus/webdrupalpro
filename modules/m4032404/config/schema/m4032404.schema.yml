@@ -1,0 +1,7 @@
+m4032404.settings:
+  type: mapping
+  label: '403 to 404 settings'
+  mapping:
+    admin_only:
+      type: boolean
+      label: 'Only apply to admin pages'

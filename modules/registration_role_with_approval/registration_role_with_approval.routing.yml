@@ -1,0 +1,15 @@
+registration_role_with_approval.roles:
+  path: '/roles'
+  defaults:
+    _controller: '\Drupal\registration_role_with_approval\Controller\RegistrationRoleWithApprovalController::roles'
+    _title: 'Avaliable roles'
+  requirements:
+    _permission: 'access content'
+
+registration_role_with_approval.settings:
+  path: '/admin/config/system/registration_role_with_approval'
+  defaults:
+    _form: 'Drupal\registration_role_with_approval\Form\RegistrationRoleWithApprovalSettingsForm'
+  requirements:
+    _permission: 'administer site configuration'
+

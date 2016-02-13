@@ -1,0 +1,4 @@
+start: 0
+css: true
+span: 'caption, flickr-wrap'
+div: 'flickr-photoset'

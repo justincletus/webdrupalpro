@@ -1,0 +1,40 @@
+rng.settings:
+  type: config_entity
+  label: 'RNG settings'
+  mapping:
+    identity_types:
+      type: sequence
+      label: 'Identity types'
+      sequence:
+        type: string
+
+rng.registration_type.*:
+  type: config_entity
+  label: 'Registration type'
+  mapping:
+    label:
+      type: label
+      label: 'Name'
+    id:
+      type: string
+      label: 'Machine-readable name'
+    description:
+      type: text
+      label: 'Description'
+
+rng.event_type.*.*:
+  type: config_entity
+  label: 'Event bundle settings'
+  mapping:
+    id:
+      type: string
+      label: 'ID'
+    entity_type:
+      type: string
+      label: 'Entity type'
+    bundle:
+      type: string
+      label: 'Bundle'
+    mirror_operation_to_event_manage:
+      type: string
+      label: 'Mirrors another operation grant from the event to event manage.'

@@ -1,0 +1,33 @@
+# Schema for the configuration files of the AutoFloat module.
+
+autofloat.settings:
+  type: config_entity
+  label: 'AutoFloat settings'
+  mapping:
+    start:
+      type: integer
+      label: 'Start with the first image on the..'
+    css:
+      type: boolean
+      label: 'Use autofloat.css'
+    span:
+      type: string
+      label: 'Additional span classes to float'
+    div:
+      type: string
+      label: 'Additional div classes to ignore'
+
+  type: filter
+  label: 'AutoFloat settings'
+  mapping:
+    notice:
+      type: string
+      label: 'Note'
+
+filter_settings.autofloat:
+  type: filter
+  label: 'AutoFloat'
+  mapping:
+    notice:
+      type: string
+      label: 'Note'

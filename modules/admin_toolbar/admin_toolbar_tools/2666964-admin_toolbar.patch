@@ -1,0 +1,10 @@
+diff --git a/admin_toolbar.module b/admin_toolbar.module
+index 2bf2fbd..e77b6ac 100644
+--- a/admin_toolbar.module
++++ b/admin_toolbar.module
+@@ -1,5 +1,6 @@
+ <?php
+ use Drupal\Core\Menu\MenuTreeParameters;
++use Drupal\Component\Utility\Crypt;
+ /**
+  *  Implements hook_toolbar_alter().

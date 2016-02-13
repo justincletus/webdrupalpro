@@ -1,0 +1,16 @@
+name: "Easychart WYSIWYG"
+description: "Integration with the text editor module to allow embedding charts (currently only CKEditor)."
+# core: 8.x
+type: module
+package: Easychart
+dependencies:
+ - easychart
+ - node
+ - views
+ - editor
+
+# Information added by Drupal.org packaging script on 2016-01-28
+version: '8.x-3.0-alpha1'
+core: '8.x'
+project: 'easychart'
+datestamp: 1453973343

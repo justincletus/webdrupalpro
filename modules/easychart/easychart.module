@@ -1,0 +1,53 @@
+<?php
+
+/**
+ * @file
+ * Easychart module file.
+ */
+
+use Drupal\Core\Form\FormStateInterface;
+use Drupal\easychart\EasychartUpdate;
+
+/**
+ *  Implements hook_form_FORM_ID_alter().
+ *
+ * @param array $form
+ *   The form
+ * @param \Drupal\Core\Form\FormStateInterface $form_state
+ *   The form state.
+ */
+function easychart_form_field_storage_config_edit_form_alter(array &$form, FormStateInterface $form_state) {
+  if ($form_state->getFormObject()->getEntity()->getType() == 'easychart') {
+    $form['cardinality_container']['#access'] = FALSE;
+    $form['cardinality_container']['cardinality_number']['#default_value'] = '1';
+  }
+}
+
+/**
+ *  Implements hook_form_FORM_ID_alter().
+ *
+ * @param array $form
+ *   The form
+ * @param \Drupal\Core\Form\FormStateInterface $form_state
+ *   The form state.
+ */
+function easychart_form_field_config_edit_form_alter(&$form, FormStateInterface $form_state) {
+  if ($form_state->getFormObject()->getEntity()->getType() == 'easychart') {
+    $form['default_value']['#access'] = FALSE;
+  }
+}
+
+/*
+ * Implements hook_cron().
+ */
+function easychart_cron() {
+  // We don't want to act every time cron runs (which could be every
+  // minute) so keep a time for the next run in state..
+  $interval = \Drupal::config('easychart.settings')->get('url_update_frequency');
+  $next_execution = \Drupal::state()->get('easychart_cron_next_execution', 0);
+
+  if (!empty($interval) && REQUEST_TIME >= $next_execution) {
+    EasychartUpdate::updateCSVFromUrl();
+    \Drupal::state()->set('easychart_cron_next_execution', REQUEST_TIME + $interval);
+  }
+}

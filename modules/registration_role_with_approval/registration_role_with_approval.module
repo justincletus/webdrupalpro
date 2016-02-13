@@ -1,0 +1,99 @@
+<?php 
+
+/**
+ * @file
+ *  This module lets an administrator select roles that will be available for selection on registration form. 
+ *  It also allows to select which roles needs admin approval. If user selects such a role during registration his account will be blocked
+ *  until approved by admin.
+ * 
+ *  @author Tamer Al Zoubi [tamerzg@gmail.com]
+ */
+
+
+/**
+*Implementation of hook_menu()
+*/
+
+$roles= array();
+
+function registration_role_with_approval_menu() {
+  
+  
+  
+  $items['admin/settings/registration_role_with_approval'] = array(
+    'title' => 'Registration Role With Approval',
+    'description' => 'Configure Registration Role With Approval.',
+    'page callback' => 'drupal_get_form',
+    'page arguments' => array('_registration_role_with_approval_admin_settings_form'),
+    'access arguments' => array('administer site configuration'),
+    'type' => MENU_NORMAL_ITEM,
+  );
+  
+ return $items;
+}
+
+function registration_role_with_approval_form_user_register_form_alter(&$form, $form_state, $form_id){
+
+  $roles = array();
+  $config = \Drupal::config('registration_role_with_approval.settings');
+  $available_roles = $config->get('profile_roles');
+
+  if (empty($available_roles)){
+    $form['profile_roles'] = array(
+      '#type' => 'checkboxes',
+      '#title' =>'You Must Configure the Module First',
+      '#options' => $roles,
+    );
+  }
+  else{
+    foreach($available_roles as $role){
+      if($role['needs_approval']){
+        $name = $role['label'] . "*needs admin approval";
+      }
+      else{
+        $name = $role['label'];
+      }
+      $form[$role['id']] = array(
+        '#type' => 'checkbox',
+        '#title' =>$name,
+      );
+    }
+  }
+  $form['actions']['submit']['#submit'][] = 'registration_role_with_approval_add_role';
+  
+}
+
+function registration_role_with_approval_add_role($form, &$form_state){
+  $config = \Drupal::config('registration_role_with_approval.settings');
+  $avaliable_roles = $config->get('profile_roles');
+  $user = \Drupal\user\Entity\User::load($form_state->getValue('uid'));
+  $approval_role_selected = array();
+
+  foreach($avaliable_roles as $role){
+    if($form_state->getValue($role['id'])){
+      $user->addRole($role['id']);
+
+      if($role['needs_approval']){
+        $approval_role_selected[] = $role;
+      }
+    }
+  }
+  // Send email notification to administrator
+  if (!empty($approval_role_selected)){
+    $params['account'] = $user;
+    $mailing_list = explode(" ", \Drupal::configFactory()->getEditable('registration_role_with_approval.settings')->get('mailing_list'));
+    if(!empty($mailing_list)){
+      foreach($mailing_list as $email){
+        $mail_manager = Drupal::service('plugin.manager.mail');
+        $mail_manager->mail('user', 'register_pending_approval_admin', $email, \Drupal::currentUser()->getPreferredLangcode(), $params);
+      }
+    }
+  }
+}
+
+/**
+ * Registration Role With Approval admin settings form.
+ *
+ * @return
+ * The settings form used by Registration Role With Approval.
+ */

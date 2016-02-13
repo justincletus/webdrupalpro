@@ -1,0 +1,41 @@
+<?php
+
+/**
+ * @file
+ * Easychart WYSIWYG integration.
+ */
+
+/**
+ * Implements hook_theme_registry_alter().
+ */
+function easychart_wysiwyg_theme_registry_alter(&$theme_registry) {
+  // Add 'html--editor-easychart.tpl.php' template file
+  $theme_registry['html__easychart_charts'] = array();
+  $theme_registry['html__easychart_charts']['template'] = 'html--easychart-charts';
+  $theme_registry['html__easychart_charts']['path'] = drupal_get_path('module', 'easychart_wysiwyg') . "/theme";
+  $theme_registry['html__easychart_charts']['render element'] = 'html';
+  $theme_registry['html__easychart_charts']['base hook'] = 'html';
+  $theme_registry['html__easychart_charts']['type'] = 'module';
+  $theme_registry['html__easychart_charts']['theme path'] = drupal_get_path('module', 'easychart_wysiwyg') . "/theme";
+
+
+  // Add 'page--editor-easychart.tpl.php' template file
+  $theme_registry['page__easychart_charts'] = array();
+  $theme_registry['page__easychart_charts']['template'] = 'page--easychart-charts';
+  $theme_registry['page__easychart_charts']['path'] = drupal_get_path('module', 'easychart_wysiwyg') . "/theme";
+  $theme_registry['page__easychart_charts']['render element'] = 'page';
+  $theme_registry['page__easychart_charts']['base hook'] = 'page';
+  $theme_registry['page__easychart_charts']['type'] = 'module';
+  $theme_registry['page__easychart_charts']['theme path'] = drupal_get_path('module', 'easychart_wysiwyg') . "/theme";
+  $theme_registry['page__easychart_charts']['override preprocess functions'] = TRUE;
+}
+
+/*
+ * Implements template_preprocess_page.
+ */
+function easychart_wysiwyg_preprocess_page(&$variables) {
+  // Force the use of this template.
+  if ($variables['theme_hook_suggestions'][0] == 'page__easychart_charts') {
+    $variables['theme_hook_suggestion'] = 'page__easychart_charts';
+  }
+}

@@ -1,0 +1,13 @@
+name: Secure Login
+description: Enables user login and other forms to be submitted securely via HTTPS and enforces secure authenticated sessions.
+type: module
+# core: 8.x
+# version: VERSION
+configure: securelogin.admin
+
+
+# Information added by Drupal.org packaging script on 2016-02-08
+version: '8.x-1.3'
+core: '8.x'
+project: 'securelogin'
+datestamp: 1454969042

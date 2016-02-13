@@ -1,0 +1,6 @@
+{
+  "name": "registration_role_with_approval",
+  "description": "Allows admin to select which roles will be available to users on registration form and to set which roles needs admin approval.",
+  "type": "drupal-module",
+  "license": "GPL-2.0+"
+}

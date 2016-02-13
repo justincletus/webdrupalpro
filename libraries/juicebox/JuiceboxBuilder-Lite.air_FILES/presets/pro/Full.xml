@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<juiceboxpreset useFlickr="true"
+	showAudioButton="true"
+	showInfoButton="true"
+	showNavButtons="true"
+	showAutoPlayButton="true"
+	backButtonPosition="OVERLAY"
+	backButtonUseIcon="true"
+	galleryTitlePosition="NONE"
+	showThumbPagingText="true"
+	maxThumbColumns="8"
+	maxThumbRows="1"
+	enableDirectLinks="true"
+	useFullscreenExpand="true"
+	captionPosition="OVERLAY_IMAGE"/>

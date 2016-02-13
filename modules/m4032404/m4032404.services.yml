@@ -1,0 +1,5 @@
+services:
+  m4032404_exception_listener:
+    class: Drupal\m4032404\EventSubscriber\m4032404EventSubscriber
+    tags:
+      - { name: event_subscriber }

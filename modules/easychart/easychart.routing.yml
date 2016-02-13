@@ -1,0 +1,13 @@
+easychart.settings:
+  path: 'admin/config/media/easychart'
+  defaults:
+    _form: '\Drupal\easychart\Form\SettingsForm'
+    _title: 'Settings'
+  requirements:
+    _permission: 'administer easychart settings'
+easychart.reset_form:
+  path: 'admin/config/media/easychart/reset'
+  defaults:
+    _form: '\Drupal\easychart\Form\ResetForm'
+  requirements:
+    _permission: 'administer easychart settings'

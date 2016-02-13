@@ -1,0 +1,26 @@
+{
+    "name": "drupal/composer_manager",
+    "type": "drupal-module",
+    "description": "Composer Manager is a bridge to best-in-breed, standards compliant PHP libraries that are managed by Composer and Packagist.",
+    "homepage": "http://drupal.org/project/composer_manager",
+    "license": "GPL-2.0",
+    "authors": [
+        {
+            "name": "See contributors",
+            "homepage": "http://drupal.org/node/1929436/committers",
+            "role": "Developer"
+        }
+    ],
+    "support": {
+        "issues": "http://drupal.org/project/issues/composer_manager"
+    },
+    "autoload": {
+        "psr-4": {
+            "Drupal\\composer_manager\\Composer\\": "/home/yloudovl/public_html/web/modules/composer_manager/src/Composer"
+        }
+    },
+    "scripts": {
+        "drupal-rebuild": "Drupal\\composer_manager\\Composer\\Command::rebuild",
+        "drupal-update": "Drupal\\composer_manager\\Composer\\Command::update"
+    }
+}

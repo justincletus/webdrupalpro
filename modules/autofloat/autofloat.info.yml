@@ -1,0 +1,12 @@
+name: AutoFloat
+type: module
+description: A text format filter that adds odd/even classes to images to make them float alternately left and right.
+# version: VERSION
+# core: 8.x
+configure: autofloat.settings
+
+# Information added by Drupal.org packaging script on 2015-08-24
+version: '8.x-1.x-dev'
+core: '8.x'
+project: 'autofloat'
+datestamp: 1440431641
